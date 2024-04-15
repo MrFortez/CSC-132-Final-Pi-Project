@@ -8,7 +8,7 @@ set_appearance_mode("dark")
 
 #Label for GUI
 label = CTkLabel(master=GUI, text="ChopMatic Pro", font = ("Lalezar",90))
-label.pack()
+label.grid()
 
 #Frame1
 frame = CTkFrame(master=GUI,width=150,height=150,corner_radius=10,fg_color="#28A9DF")
