@@ -54,4 +54,8 @@ frame6.grid(row=4,column=4,columnspan=2,rowspan=2)
 placed_image3 = CTkLabel(master=frame6, image=image3, text="")
 placed_image3.grid()
 
+#Enter Button
+button = CTkButton(master=GUI,text="ENTER",fg_color="#81B0E0")
+button.grid(row=6,column=2,rowspan=3,columnspan=3)
+
 GUI.mainloop()
