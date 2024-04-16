@@ -49,9 +49,9 @@ frame5_label = CTkLabel(master=frame5,text="Slices Amount",font=("Arial", 20),te
 frame5_label.grid(column=0,row=0,sticky=N)
 
 #frame6 setup & contents
-frame6 = CTkFrame(master=GUI,width=250,height=250)
+frame6 = CTkFrame(master=GUI,width=250,height=250,fg_color="transparent")
 frame6.grid(row=4,column=4,columnspan=2,rowspan=2)
-placed_image3 = CTkLabel(master=frame6, image=image3, text="")
+placed_image3 = CTkLabel(master=frame6, image=image3, text="",fg_color="transparent")
 placed_image3.grid()
 
 #Enter Button
