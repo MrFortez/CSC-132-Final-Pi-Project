@@ -54,7 +54,7 @@ frame5_label.grid(column=0,row=0,sticky=N)
 #frame6 setup & contents
 frame6 = CTkFrame(master=GUI,width=250,height=200)
 frame6.grid(row=4,column=4,columnspan=2,rowspan=2)
-placed_image3 = CTkLabel(master=frame6, image=image3, text="")
+placed_image3 = CTkLabel(master=frame6, image=image3, text="",fg_color="transparent")
 placed_image3.grid()
 
 #Enter Button
