@@ -6,3 +6,6 @@ Created Progress Reports for repo
 modeled original prototype and printed it
 discovered errors in orginal prototype and remodelled it
 sent second prototype to print lab
+
+4.15.24-4.21.24
+printed current model of protoype and assembled it
