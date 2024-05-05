@@ -1,6 +1,7 @@
 from tkinter import *
 from customtkinter import *
 from PIL import ImageTk, Image
+import os
 
 #Setup
 GUI = CTk()
@@ -8,8 +9,8 @@ GUI.geometry("1055x600")
 set_appearance_mode("dark")
 
 #image names
-image1 = CTkImage(Image.open("C:/Users/baili/Downloads/CSC-132-Final-Pi-Project/GUI/Images/side-image.jpg"), size=(525, 600))
-image2 = CTkImage(Image.open("C:/Users/baili/Downloads/CSC-132-Final-Pi-Project/GUI/Images/text.png"),size = (530, 170))
+image1 = CTkImage(Image.open(os.path.join("GUI", "Images", "side-image.jpg")), size=(525, 600))
+image2 = CTkImage(Image.open(os.path.join("GUI", "Images", "text.png")),size = (530, 170))
 
 #frame1 setup & contents
 frame1 = CTkFrame(master=GUI, width=530,height=500,bg_color="transparent")
