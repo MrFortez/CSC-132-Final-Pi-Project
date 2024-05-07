@@ -4,5 +4,8 @@ Created Progress Reports for repo
 4.7.24
 Started on GUI
 
-4.12.13
-Added images, text, and buttons. Made visually appealing.
+4.12.24
+Added images, text, and buttons. Made visually appealing
+
+5.7.24
+Made changes to GUI based on what the project needed, there were some changes involved that we planned for but didn't get around to doing
