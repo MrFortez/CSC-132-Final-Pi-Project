@@ -5,7 +5,7 @@
 
 Servo pinionServo;
 Servo elbowServo;
-Servo wristServo;
+Servo wristServo;i
 
 
 void setup() {
@@ -24,13 +24,13 @@ void setup() {
 void loop() {
   delay(100);
   // Serial.println(wristServo.read());
-  moveRack(0);
+  // moveRack(0);
   // moveWrist(5);
   // elbowServo.write(90);
   delay(10000);
   // elbowServo.write(125);
   // moveWrist(16);
-  moveRack(180);
+  // moveRack(180);
   delay(10000);
 }
 
