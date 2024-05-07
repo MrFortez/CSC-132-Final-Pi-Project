@@ -11,6 +11,7 @@ set_appearance_mode("dark")
 #image names
 image1 = CTkImage(Image.open(os.path.join("GUI", "Images", "side-image.jpg")), size=(525, 600))
 image2 = CTkImage(Image.open(os.path.join("GUI", "Images", "text.png")),size = (530, 170))
+image3 = CTkImage(Image.open(os.path.join("GUI", "Images", "icon.png")),size = (256, 200))
 
 #frame1 setup & contents
 frame1 = CTkFrame(master=GUI, width=530,height=500,bg_color="transparent")
@@ -58,15 +59,19 @@ frame5_label = CTkLabel(master=frame5,text="How many slices?",font=("Arial", 20)
 frame5_label.grid(column=0,row=2,sticky=N)
 
 #frame6 setup & contents
-frame6 = CTkFrame(master=GUI,width=265,height=200,fg_color="#81B0E0")
+# frame6 = CTkFrame(master=GUI,width=265,height=200,fg_color="#81B0E0")
+# frame6.grid(row=4,column=4,columnspan=2,rowspan=2)
+# frame6.grid_propagate(False)
+# dropdown = CTkComboBox(master=frame6, values=["Pizza Cut","Sliced","Diced"])
+# dropdown.grid(column=0,row=1,sticky=S)
+# frame6_label = CTkLabel(master=frame6,text="Type Of Cut",font=("Arial", 20),text_color="Black")
+# frame6_label.grid(column=0,row=0,sticky=N)
+# frame6_label = CTkLabel(master=frame6,text="What type of cut?",font=("Arial", 20),text_color="Black")
+# frame6_label.grid(column=0,row=2,sticky=N)
+frame6 = CTkFrame(master=GUI, width=530,height=250)
 frame6.grid(row=4,column=4,columnspan=2,rowspan=2)
-frame6.grid_propagate(False)
-dropdown = CTkComboBox(master=frame6, values=["Pizza Cut","Sliced","Diced"])
-dropdown.grid(column=0,row=1,sticky=S)
-frame6_label = CTkLabel(master=frame6,text="Type Of Cut",font=("Arial", 20),text_color="Black")
-frame6_label.grid(column=0,row=0,sticky=N)
-frame6_label = CTkLabel(master=frame6,text="What type of cut?",font=("Arial", 20),text_color="Black")
-frame6_label.grid(column=0,row=2,sticky=N)
+placed_image3 = CTkLabel(master=frame6, image=image3, text="")
+placed_image3.grid(row=2,column=0,columnspan=2,rowspan=2)
 
 
 #Enter Button
