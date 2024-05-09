@@ -1,63 +1,70 @@
 #include <Wire.h>
 #include <Servo.h>
-
-#define SLAVE_ADDRESS 0x08
+#include <string.h>
 
 Servo pinionServo;
 Servo elbowServo;
-Servo wristServo;i
+// Servo wristServo;
 
+float cutDistance = 1;
+float foodSize = 12;
+int numOfCuts = 5;
 
 void setup() {
-  // Initialize I2C communication as a slave with address SLAVE_ADDRESS
-  Wire.begin(SLAVE_ADDRESS);
-  
-  // Define a callback function to handle incoming data
-  Wire.onReceive(receiveData);
-  
   pinionServo.attach(4);
   elbowServo.attach(6);
-  wristServo.attach(8);
+  // wristServo.attach(8);
   Serial.begin(9600);
+  // moveRack(0);
 }
 
 void loop() {
-  delay(100);
-  // Serial.println(wristServo.read());
-  // moveRack(0);
-  // moveWrist(5);
-  // elbowServo.write(90);
-  delay(10000);
-  // elbowServo.write(125);
-  // moveWrist(16);
-  // moveRack(180);
-  delay(10000);
-}
+  if (Serial.available() > 0) {
+    // Read the incoming string until newline character ('\n') is received
+    String receivedString = Serial.readString();
 
-void receiveData(int byteCount) {
-  Serial.print("poggers");
-  while (Wire.available()) {
-    // Read incoming byte from master
-    int receivedByte = Wire.read();
-    
-    // Print received byte to serial monitor
-    Serial.print("Received byte from master: ");
-    Serial.println(receivedByte);
+    // Split the string by spaces and convert each substring to a float
+    char *ptr = strtok((char *)receivedString.c_str(), " ");
+    if (ptr != NULL) {
+      cutDistance = atof(ptr);
+      ptr = strtok(NULL, " ");
+      if (ptr != NULL) {
+        foodSize = atof(ptr);
+        ptr = strtok(NULL, " ");
+        if (ptr != NULL) {
+          numOfCuts = atof(ptr);
+        }
+      }
+    }
+
+    // if (receivedString == "2 2 2") {
+    //   moveRack(180);      
+    // }
+    // else if (receivedString != "") {
+    //   moveRack(90);
+    // }
+    // fullCutSequence();
+    // delay(2000);
   }
+  // cutDistance = 2;
+  // numOfCuts = 4;
+  // fullCutSequence();
+  // pinionServo.write(0);
+  halfIncrementServo(pinionServo);
 }
 
 // 5 to 16
 void moveWrist(int angle) {
-  double newAngle = angle;
-  if (newAngle > 16) {
-    newAngle = 16;
-  }
-  if (newAngle < 5) {
-    newAngle = 5;
-  }
+  // double newAngle = angle;
+  // if (newAngle > 16) {
+  //   newAngle = 16;
+  // }
+  // if (newAngle < 5) {
+  //   newAngle = 5;
+  // }
 
-  wristServo.write(newAngle);
-  Serial.println(wristServo.read());
+  // wristServo.write(newAngle);
+  // Serial.println(wristServo.read());
 }
 
 // 65 to 165
@@ -85,6 +92,62 @@ void moveRack(int angle) {
     newAngle = 0;
   }
 
-  pinionServo.write(newAngle);
+  servoSlowMove(newAngle, pinionServo);
   Serial.println(pinionServo.read());
+}
+
+// Used For Pinion Testing
+void halfIncrementServo(Servo servo) {
+  if (servo.read() >= 90) {
+    Serial.print("bruh");
+    servoSlowMove(0, servo);
+  }
+  else{
+    servoSlowMove(servo.read() + 10, servo);
+  }
+}
+
+// Moves a servo slowly by incrementing it by 1 every 50 milliseconds
+void servoSlowMove(int angle, Servo servo) {
+  if (servo.read() > angle) {
+    for (int i = servo.read(); servo.read() != angle; i -= 3) {
+      servo.write(i);
+      delay(10);
+      Serial.println(i);
+    }
+  }
+  else {
+    for (int i = servo.read(); servo.read() != angle; i += 3) {
+      servo.write(i);
+      delay(50);
+      Serial.print(i);
+    }
+
+  }
+}
+
+// Slicing motion for the arm
+void servoSlice() {
+  moveElbow(70);
+  delay(1000);
+  moveElbow(115);
+  delay(1000);
+}
+
+void fullCutSequence() {
+  // Convert from inches to pinion servo angle (16 degrees on the Pinion servo moves it 1 inch)
+  int cutServoAngle = cutDistance * 16;
+  Serial.print(cutServoAngle);
+
+  // do however many cuts the user inputed
+  for (int i = 0; i < numOfCuts; i++) {
+    Serial.print("ok booker");
+    // Move the rack by however wide the cuts should be
+    moveRack(pinionServo.read() + cutServoAngle);
+    delay(1000);
+    servoSlice();
+  }
+
+  // Rezero the Pinion
+  moveRack(0);
 }

@@ -2,4 +2,11 @@
 Created Progress Reports for repo
 
 4.13.24
-Started work on servos. Learned how they worked. Started research on I2C communication between Le Potato and arduino`
+Started work on servos. Learned how they worked. Started research on I2C communication between Le Potato and arduino
+
+4.17.24
+Wired up the le potato to the arduino via I2C, did a lot of testing and troubleshooting to get it working,
+    eventually was able to send data from the le potato to the arduino
+
+4.27.24
+Got the prototype arm, tested the arm 
