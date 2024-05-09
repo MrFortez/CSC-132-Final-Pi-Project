@@ -82,13 +82,10 @@ class App:
         # frame6_label.grid(column=0,row=2,sticky=N)
         self.frame6 = CTkFrame(master=self.GUI, width=530,height=250)
         self.frame6.grid(row=4,column=4,columnspan=2,rowspan=2)
-        self.placed_image3 = CTkLabel(master=self.frame6, image=self.image3, text="")
-        self.placed_image3.grid(row=2,column=0,columnspan=2,rowspan=2)
-
-
-        #Enter Button
-        self.button = CTkButton(master=self.GUI,text="Lets get Cutting!",fg_color="#81B0E0", text_color="#000000", command=self.beginCommand)
-        self.button.grid(row=6,column=2,rowspan=3,columnspan=3)
+        self.button = CTkButton(master=self.frame6,text="Lets get Cutting!",fg_color="#81B0E0", text_color="#000000", command=self.beginCommand)
+        self.button.grid(row=0,column=1,rowspan=3,columnspan=3)
+        # self.placed_image3 = CTkLabel(master=self.frame6, image=self.image3, text="")
+        # self.placed_image3.grid(row=2,column=0,columnspan=2,rowspan=2)
 
         self.GUI.mainloop()
 
