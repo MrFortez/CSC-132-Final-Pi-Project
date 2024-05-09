@@ -2,8 +2,10 @@ from tkinter import *
 from customtkinter import *
 from PIL import ImageTk, Image
 import os
+# import serial
+from time import sleep
 
-
+# ser = serial.Serial('/dev/ttyACM0', 9600)
 
 class App:
     def __init__(self) -> None:
@@ -90,8 +92,13 @@ class App:
         self.GUI.mainloop()
 
     def beginCommand(self):
-        responses = [self.entry3.get(), self.entry4.get(), self.entry5.get()]
+        responses = self.entry4.get() + " " + self.entry3.get() + " " + self.entry5.get()
+        #dataToSend = " ".join(responses)
         print(responses)
-
+        #ser.write(dataToSend.encode())
+        # ser.write(responses.encode())
+        #test = self.entry4.get()
+        #ser.write(test.encode())
+        print('poggers')
 
 runGUI = App()
