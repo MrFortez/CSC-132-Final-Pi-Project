@@ -43,14 +43,18 @@ void loop() {
     // else if (receivedString != "") {
     //   moveRack(90);
     // }
-    // fullCutSequence();
-    // delay(2000);
+    fullCutSequence();
+    delay(2000);
   }
   // cutDistance = 2;
   // numOfCuts = 4;
   // fullCutSequence();
   // pinionServo.write(0);
-  halfIncrementServo(pinionServo);
+  // halfIncrementServo(pinionServo);
+  servoSlowMove(0, pinionServo);
+  // elbowServo.write(elbowServo.read());
+  // Serial.print(elbowServo.read());
+  // servoSlice();
 }
 
 // 5 to 16
@@ -93,7 +97,7 @@ void moveRack(int angle) {
   }
 
   servoSlowMove(newAngle, pinionServo);
-  Serial.println(pinionServo.read());
+  // Serial.println(pinionServo.read());
 }
 
 // Used For Pinion Testing
@@ -110,16 +114,16 @@ void halfIncrementServo(Servo servo) {
 // Moves a servo slowly by incrementing it by 1 every 50 milliseconds
 void servoSlowMove(int angle, Servo servo) {
   if (servo.read() > angle) {
-    for (int i = servo.read(); servo.read() != angle; i -= 3) {
+    for (int i = servo.read(); servo.read() != angle; i -= 1) {
       servo.write(i);
-      delay(10);
+      delay(30);
       Serial.println(i);
     }
   }
   else {
-    for (int i = servo.read(); servo.read() != angle; i += 3) {
+    for (int i = servo.read(); servo.read() != angle; i += 1) {
       servo.write(i);
-      delay(50);
+      delay(30);
       Serial.print(i);
     }
 
@@ -128,10 +132,10 @@ void servoSlowMove(int angle, Servo servo) {
 
 // Slicing motion for the arm
 void servoSlice() {
-  moveElbow(70);
-  delay(1000);
-  moveElbow(115);
-  delay(1000);
+  servoSlowMove(20, elbowServo);
+  delay(3000);
+  servoSlowMove(39, elbowServo);
+  delay(3000);
 }
 
 void fullCutSequence() {
@@ -145,7 +149,7 @@ void fullCutSequence() {
     // Move the rack by however wide the cuts should be
     moveRack(pinionServo.read() + cutServoAngle);
     delay(1000);
-    servoSlice();
+    // servoSlice();
   }
 
   // Rezero the Pinion

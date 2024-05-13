@@ -9,4 +9,18 @@ Wired up the le potato to the arduino via I2C, did a lot of testing and troubles
     eventually was able to send data from the le potato to the arduino
 
 4.27.24
-Got the prototype arm, tested the arm 
+Got the prototype arm, tested the arm. Found that the fishing line wasnt going to work, ordered a continuous Servo.
+
+5.5.24
+Put the updated GUI code onto the le potato, troubleshooted it and got it to work. Also switched from I2C communicaiton
+    to direct USB Serial communicaiton. Managed to recognize data being sent from the Le Potato to the arduino
+
+5.8.24
+Figured out the commmunication from Le Potato to Arduino: able to read a string sent through the USB Cable. Able to take the values 
+    from the GUI, put them into a String, and send it to the Arduino. Arduino is able to read the data sent and can adjust the movements
+    of the Arm accordingly. Tested the newly finished rack and pinion design, as well as the arm's ability to chop.
+Later in the day, we di a ton of asthetic and mechanical improvements, as the rack and pinion was very loose. Ended up breaking a piece 
+    at 11.30 pm :(
+
+5.9.24 
+We 3d printed a replacement part, quickly attached it, and went to the expo.
